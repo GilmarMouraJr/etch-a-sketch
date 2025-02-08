@@ -12,7 +12,15 @@ function createDivs(divSide) {
 }
 
 function changeDivColor() {
-    this.style.backgroundColor = "black";
+    r = Math.floor(Math.random() * 256);
+    g = Math.floor(Math.random() * 256);
+    b = Math.floor(Math.random() * 256);
+    let value = window.getComputedStyle(this).getPropertyValue('background-color').split(', ');
+    // let opacity = value[3] ? Number(value[3].replace(")", "")) + 0.1 : 1;
+    if(value[3]){
+        opacity = Number(value[3].replace(")", "")) + 0.1
+        this.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+    }
 }
 
 function eraseDivs() {
