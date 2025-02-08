@@ -21,20 +21,27 @@ function eraseDivs() {
     }
 }
 
+function refreshDivs() {
+    divSide = prompt("How many squares per side?", "16");
+
+    if(divSide == null || divSide == "" || divSide < 2){
+        alert("Invalid square number.")
+        divSide = 16;
+    }
+
+    if(divSide > 100){
+        alert("Square number too high. Defaulting to maximum of 100.")
+        divSide = 100;
+    }
+
+    eraseDivs();
+    createDivs(divSide);
+}
+
 const container = document.getElementById("container");
 let divSide = 16;
 
 createDivs(divSide);
 
 const button = document.getElementById("divPerSide");
-button.addEventListener("click", function (e) {
-
-    divSide = prompt("How many squares per side?", "16");
-    if(divSide == null || divSide == "" || divSide < 2){
-        alert("Invalid square number.")
-        divSide = 16;
-    }
-
-    eraseDivs();
-    createDivs(divSide);
-});
+button.addEventListener("click", refreshDivs);
