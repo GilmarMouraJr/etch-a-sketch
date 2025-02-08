@@ -1,8 +1,12 @@
-function createDivs(divNumber) {
+function createDivs(divSide) {
+    let divNumber = divSide * divSide;
+    let size = 800/divSide;
     for(let i=0; i<divNumber; i++){
         const newDiv = document.createElement("div");
         newDiv.classList.add("sketchDiv");
         newDiv.addEventListener("mouseenter", changeDivColor);
+        newDiv.style.height = size+"px";
+        newDiv.style.width = size+"px";
         container.appendChild(newDiv);
     }
 }
@@ -18,19 +22,19 @@ function eraseDivs() {
 }
 
 const container = document.getElementById("container");
-let divNumber = 256;
+let divSide = 16;
 
-    createDivs(divNumber);
+createDivs(divSide);
 
 const button = document.getElementById("divPerSide");
 button.addEventListener("click", function (e) {
 
-    divNumber = prompt("How many squares per side?", "16");
-    if(divNumber == null || divNumber == "" || divNumber < 2){
+    divSide = prompt("How many squares per side?", "16");
+    if(divSide == null || divSide == "" || divSide < 2){
         alert("Invalid square number.")
-        divNumber = 16;
+        divSide = 16;
     }
 
     eraseDivs();
-    createDivs(divNumber*divNumber);
+    createDivs(divSide);
 });
